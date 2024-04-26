@@ -1,12 +1,10 @@
-import NavBar from './views/NavBar'
-import { ThreeDCardDemo } from './views/ThreeDCardDemo'
+import Router from "./router/index"
 
 function App() {
 
   return (
    <div>
-    <NavBar />
-    <ThreeDCardDemo />
+    <Router />
    </div>
   )
 }
