@@ -3,6 +3,7 @@ import { StickyNavbar } from "@/layouts/NavBar";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const Home = lazy(() => import('@/views/Home/index.tsx'))
+const SignUp = lazy(() => import('@/views/Auth/Signin'))
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -17,6 +18,18 @@ const Router = () => {
                     element: (
                         <Suspense fallback={<>Loading</>} >
                             <Home />
+                        </Suspense>
+                    )
+                }
+            ]
+        },{
+            path: '/auth',
+            children: [
+                {
+                    path: 'sign-in',
+                    element: (
+                        <Suspense fallback={<>Loading</>} >
+                            <SignUp />
                         </Suspense>
                     )
                 }
