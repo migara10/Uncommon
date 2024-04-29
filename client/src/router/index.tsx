@@ -26,7 +26,7 @@ const Router = () => {
             path: '/auth',
             children: [
                 {
-                    path: 'sign-in',
+                    path: 'sign-up',
                     element: (
                         <Suspense fallback={<>Loading</>} >
                             <SignUp />
