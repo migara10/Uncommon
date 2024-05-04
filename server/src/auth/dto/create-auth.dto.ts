@@ -5,7 +5,7 @@ export enum Role {
   USER = 'USER',
 }
 
-export class CreateAuthDto {
+export class CreateUserDto {
   @IsString()
   @Length(2, 30)
   firstName: string;
@@ -18,7 +18,7 @@ export class CreateAuthDto {
   email: string;
 
   @IsString()
-  @Length(2, 8)
+  @Length(2, 255)
   password: string;
 
   @IsEnum(Role)

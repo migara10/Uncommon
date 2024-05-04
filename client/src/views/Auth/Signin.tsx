@@ -4,6 +4,7 @@ import { ZodType, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
+
 const Signin = () => {
     const schema: ZodType<SignIn> = z.object({
         firstName: z.string().min(2).max(30),
@@ -21,8 +22,9 @@ const Signin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<SignIn>({ resolver: zodResolver(schema) });
 
     const submitData = async (data: SignIn) => {
+        const { confirmPassword, ...postData } = data;
         try {
-            const response = await axios.post('http://localhost:3000/auth/sign-up', data)
+            const response = await axios.post('http://localhost:3000/auth/sign-up', postData)
             console.log(response)
         } catch {
 
