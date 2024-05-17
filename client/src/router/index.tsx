@@ -1,5 +1,6 @@
 
 import { StickyNavbar } from "@/layouts/NavBar";
+import Login from "@/views/Auth/Login";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const Home = lazy(() => import('@/views/Home/index.tsx'))
@@ -30,6 +31,14 @@ const Router = () => {
                     element: (
                         <Suspense fallback={<>Loading</>} >
                             <SignUp />
+                        </Suspense>
+                    )
+                },
+                {
+                    path: 'sign-in',
+                    element: (
+                        <Suspense fallback={<>Loading</>} >
+                            <Login />
                         </Suspense>
                     )
                 }

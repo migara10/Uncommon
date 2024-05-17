@@ -7,9 +7,12 @@ import {
   IconButton,
   Card,
 } from "@material-tailwind/react";
+import { Outlet, useNavigate } from "react-router-dom";
  
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
+
+  const navigate = useNavigate();
  
   React.useEffect(() => {
     window.addEventListener(
@@ -134,7 +137,7 @@ export function StickyNavbar() {
         <MobileNav open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-            <Button fullWidth variant="text" size="sm" className="">
+            <Button fullWidth variant="text" size="sm" className="" onClick={navigate('/auth/sign-in')}>
               <span>Log In</span>
             </Button>
             <Button fullWidth variant="gradient" size="sm" className="">
@@ -143,6 +146,7 @@ export function StickyNavbar() {
           </div>
         </MobileNav>
       </Navbar>
+      <Outlet />
     </div>
   );
 }

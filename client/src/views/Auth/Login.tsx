@@ -1,11 +1,25 @@
-import { LogIn } from "@/types"
+import { setUser } from "@/store/reducers/userSlice"
+import { LogIn, Role } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
 import { useForm } from "react-hook-form"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { ZodType, z } from "zod"
 
 
 const Login = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const user1 = {
+        firstName: "migara",
+        lastName: "tennakoon",
+        email: "migara@gmail.com",
+        password: "1234",
+        userType: Role.ADMIN 
+    }
 
     const schema: ZodType<LogIn> = z.object({
         email: z.string().email(),
@@ -18,8 +32,12 @@ const Login = () => {
 
     const submitData = async (data: LogIn) => {
         try {
-            const response = await axios.post('http://localhost:3000/auth/sign-in', data)
-            console.log(response)
+            const response: any = await axios.post('http://localhost:3000/auth/sign-in', data)
+            if(response){
+                console.log(response.data.user)
+                dispatch(setUser(user1))
+                navigate('/home/about');
+            }
         } catch {
 
         }
