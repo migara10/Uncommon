@@ -48,6 +48,8 @@ export class AuthService {
       }        
     })
     if(!user) throw new ForbiddenException('User not found')
+      const { password, refreshToken, ...sortUser } = user;
+    console.log(sortUser)
 
       const passwordMatch = await bcrypt.compare(loginUserDto.password, user.password);
       if(!passwordMatch) throw new ForbiddenException('Password Not Match!');
@@ -56,8 +58,8 @@ export class AuthService {
       await this.updateRtHash(user.id, tokens.refresh_token)
 
     return {
-      user,
-      tokens
+      tokens,
+      user: sortUser
     }
   }
 

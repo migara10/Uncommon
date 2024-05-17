@@ -11,6 +11,13 @@ export interface User {
   userType: Role;
 }
 
+
+export interface LogIn {
+  email: string;
+  password: string;
+}
+
 export interface SignIn extends User {
   confirmPassword: string,
 }
+
