@@ -34,8 +34,9 @@ const Login = () => {
         try {
             const response: any = await axios.post('http://localhost:3000/auth/sign-in', data)
             if(response){
-                console.log(response.data.user)
-                dispatch(setUser(user1))
+                console.log(response.data.user);
+                dispatch(setUser(response.data.user));
+                localStorage.setItem('tokens', JSON.stringify(response.data.tokens));
                 navigate('/home/about');
             }
         } catch {
